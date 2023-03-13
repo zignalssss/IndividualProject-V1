@@ -1,19 +1,21 @@
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 
-public class RandResProject{
-
+public class RandResProject extends ProjectFont{
+    private CheckOpenClose check = new CheckOpenClose();
     private JFrame frame = new JFrame("RandResProject");
-    private ProjectFont font = new ProjectFont();
-    private ReadFiles formExcel = new ReadFiles();
     private Color color = new Color(255,235,205);
+    private ReadFiles formExcel = new ReadFiles() ;
     RandResProject(){
+        check.sortTimeRestaraunt();
         setMainPage();
         createJFrame();
-
     }
     private void createJFrame(){
+
         frame.setSize(1000,700);
         frame.getContentPane().setBackground(color);
         frame.setResizable(false);
@@ -30,9 +32,17 @@ public class RandResProject{
         JPanel panelForButton = new JPanel();
         JPanel panelForCurrentTime = new JPanel();
         JLabel projectText = new JLabel("Random Restaurant Near KUSRC");
-        projectText.setFont(font.getFont().deriveFont(17f).deriveFont(Font.BOLD));
+        projectText.setFont(getFont().deriveFont(17f).deriveFont(Font.BOLD));
         JLabel currentTimeText = new JLabel("Current Time: " + formExcel.getCurrentTime(),JLabel.CENTER);
+        currentTimeText.setFont(getFont().deriveFont(14f).deriveFont(Font.BOLD));
         panelforMainPage.setLayout(new BoxLayout(panelforMainPage,BoxLayout.Y_AXIS));
+        Timer timer = new Timer(1000, e -> {
+            LocalTime time = LocalTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+            String formattedTime = time.format(formatter);
+            currentTimeText.setText("Current Time: " + formattedTime);
+        });
+        timer.start();
         panelForText.add(projectText);
         panelForImage.add(image.getImageCover());
         panelForButton.add(button.getRandomButton());

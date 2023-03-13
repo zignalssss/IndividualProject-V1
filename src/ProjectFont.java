@@ -16,5 +16,4 @@ public class ProjectFont {
     public Font getFont(){
         return Kanit;
     }
-
 }
