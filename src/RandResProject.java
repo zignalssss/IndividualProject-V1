@@ -7,6 +7,7 @@ public class RandResProject{
     private JFrame frame = new JFrame("RandResProject");
     private ProjectFont font = new ProjectFont();
     private ReadFiles formExcel = new ReadFiles();
+    private Color color = new Color(255,235,205);
     RandResProject(){
         setMainPage();
         createJFrame();
@@ -14,7 +15,7 @@ public class RandResProject{
     }
     private void createJFrame(){
         frame.setSize(1000,700);
-        frame.getContentPane().setBackground(Color.pink);
+        frame.getContentPane().setBackground(color);
         frame.setResizable(false);
         frame.setLayout(new FlowLayout(FlowLayout.CENTER,20,20));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -33,7 +34,7 @@ public class RandResProject{
         JLabel currentTimeText = new JLabel("Current Time: " + formExcel.getCurrentTime(),JLabel.CENTER);
         panelforMainPage.setLayout(new BoxLayout(panelforMainPage,BoxLayout.Y_AXIS));
         panelForText.add(projectText);
-        panelForImage.add(image.getRes1());
+        panelForImage.add(image.getImageCover());
         panelForButton.add(button.getRandomButton());
         panelForButton.add(button.getCheckButton());
         panelForCurrentTime.add(currentTimeText);
@@ -45,6 +46,7 @@ public class RandResProject{
         panelforMainPage.add(panelForCurrentTime);
         panelforMainPage.add(Box.createRigidArea(new Dimension(0,30)));
         panelforMainPage.add(panelForButton);
+        panelforMainPage.setBackground(color);
         frame.add(panelforMainPage);
     }
 

@@ -22,7 +22,7 @@ public class ReadFiles {
             XSSFWorkbook wb = new XSSFWorkbook(fis);
             XSSFSheet sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object
             //iterating over excel file
-            for(int i = 2 ; i <= 3 ; i++) {
+            for(int i = 1 ; i <= 3 ; i++) {
                 Cell cell = sheet.getRow(index).getCell(i);
                 switch (cell.getCellType()) {
                     case Cell.CELL_TYPE_STRING:    //field that represents string cell type
