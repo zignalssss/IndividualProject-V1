@@ -9,17 +9,14 @@ public class RandResProject extends ProjectFont{
     private JFrame frame = new JFrame("RandResProject");
     private Color color = new Color(255,235,205);
     private ReadFiles formExcel = new ReadFiles() ;
-    private JPanel panelforMainPage = new JPanel();
-    private JPanel panelforCheckPage  = new JPanel();
+    private JPanel panelforMainPage,panelforCheckPage= new JPanel();
     private CheckOpenClose check = new CheckOpenClose();
     private Button button = new Button();
     RandResProject(){
-        setMainPage();
-        setCheckPage();
+        setPage();
         createJFrame();
     }
     private void createJFrame(){
-
         frame.setSize(1000,700);
         frame.getContentPane().setBackground(color);
         frame.setResizable(false);
@@ -27,7 +24,10 @@ public class RandResProject extends ProjectFont{
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
-    private void setMainPage(){
+    private void setPage(){
+//        Section Main Page
+        panelforMainPage = new JPanel();
+        panelforCheckPage = new JPanel();
         ImageFiles image = new ImageFiles();
         JPanel panelForText = new JPanel();
         JPanel panelForImage = new JPanel();
@@ -54,8 +54,9 @@ public class RandResProject extends ProjectFont{
         panelForCurrentTime.add(currentTimeText);
         panelForText.setBackground(color);
         panelForImage.setBackground(color);
-        panelForCurrentTime.setBackground(color);
         panelForButton.setBackground(color);
+        panelforMainPage.setBackground(color);
+        panelForCurrentTime.setBackground(color);
         panelforMainPage.add(Box.createRigidArea(new Dimension(0,10)));
         panelforMainPage.add(panelForText);
         panelforMainPage.add(Box.createRigidArea(new Dimension(0,30)));
@@ -64,12 +65,9 @@ public class RandResProject extends ProjectFont{
         panelforMainPage.add(panelForCurrentTime);
         panelforMainPage.add(Box.createRigidArea(new Dimension(0,30)));
         panelforMainPage.add(panelForButton);
-        panelforMainPage.setBackground(color);
         frame.add(panelforMainPage);
-    }
-    private void setCheckPage(){
-        Button button = new Button();
-        panelforCheckPage = new JPanel();
+
+//        Section Check Page
         JPanel panelForTextOpen = new JPanel();
         JPanel panelForTextClose = new JPanel();
         JPanel panelForHold = new JPanel();
@@ -94,6 +92,14 @@ public class RandResProject extends ProjectFont{
         close.setFont(getFont().deriveFont(14f).deriveFont(Font.BOLD));
         checkStatus.setFont(getFont().deriveFont(17f).deriveFont(Font.BOLD));
         panelBackButton.add(button.getBackButton(panelforMainPage,panelforCheckPage));
+        panelOpen.setBackground(color);
+        panelClose.setBackground(color);
+        panelForHold.setBackground(color);
+        panelTextPage.setBackground(color);
+        panelBackButton.setBackground(color);
+        panelForTextOpen.setBackground(color);
+        panelForTextClose.setBackground(color);
+        panelforCheckPage.setBackground(color);
         panelOpen.add(open);
         panelClose.add(close);
         panelTextPage.add(checkStatus);
@@ -102,15 +108,15 @@ public class RandResProject extends ProjectFont{
         panelForTextClose.add(panelClose);
         panelForTextClose.add(scrollFrameClose);
         panelForHold.add(panelForTextOpen);
+        panelForHold.add(Box.createRigidArea(new Dimension(30,0)));
         panelForHold.add(panelForTextClose);
-        panelforCheckPage.add(Box.createRigidArea(new Dimension(0,30)));
+        panelforCheckPage.add(Box.createRigidArea(new Dimension(0,20)));
         panelforCheckPage.add(panelTextPage);
-        panelforCheckPage.add(Box.createRigidArea(new Dimension(0,50)));
+        panelforCheckPage.add(Box.createRigidArea(new Dimension(0,30)));
         panelforCheckPage.add(panelForHold);
+        panelforCheckPage.add(Box.createRigidArea(new Dimension(0,20)));
         panelforCheckPage.add(panelBackButton);
-
         frame.add(panelforCheckPage);
-
     }
 
     public static void main(String[] args) {
