@@ -1,10 +1,13 @@
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ImageFiles {
-    private ArrayList<JLabel> arrImage = new ArrayList<JLabel>();
+
     private File starterImage = new File("Starterimage.png");
+    private File closeImage = new File("Close.png");
     private File image1 = new File("1.png");
     private File image2 = new File("2.png");
     private File image3 = new File("3.png");
@@ -18,20 +21,29 @@ public class ImageFiles {
     private File image11 = new File("11.png");
     private File image12 = new File("12.png");
     private File image13 = new File("13.png");
-    
-    private ArrayList<JLabel> imageArray = new ArrayList<JLabel>();
-    private File[] arrFile = {starterImage,image1,image2,image3,image4,image5,image6,image7,image8,image9,image10,image11,image12,image13};
+    private CheckOpenClose check = new CheckOpenClose();
+    private HashMap< Integer, ImageIcon> rastarauntImage = new HashMap<Integer, ImageIcon>();
+    private ImageIcon starterCover = new ImageIcon();
+    private ImageIcon closeCover = new ImageIcon();
+    private File[] arrFile = {image1,image2,image3,image4,image5,image6,image7,image8,image9,image10,image11,image12,image13};
 
     public ImageFiles(){
+        int i = 1;
+        starterCover = (new ImageIcon(((new ImageIcon(starterImage.getAbsolutePath())).getImage()).getScaledInstance(800, 400, java.awt.Image.SCALE_SMOOTH)));
+        closeCover = (new ImageIcon(((new ImageIcon(closeImage.getAbsolutePath())).getImage()).getScaledInstance(800, 400, java.awt.Image.SCALE_SMOOTH)));
         for (File file:arrFile) {
-            imageArray.add(new JLabel( new ImageIcon(((new ImageIcon(file.getAbsolutePath())).getImage()).getScaledInstance(800, 400, java.awt.Image.SCALE_SMOOTH))));
+            rastarauntImage.put(i,new ImageIcon(((new ImageIcon(file.getAbsolutePath())).getImage()).getScaledInstance(800, 400, java.awt.Image.SCALE_SMOOTH)));
+            i++;
         }
     }
-    public JLabel getRandomImage(int index){
-        return  null;
+    public ImageIcon getRandomImage(int index){
+        return rastarauntImage.get(check.getNumberRestaraunt(index));
     }
-    public JLabel getImageCover(){
-        return this.imageArray.get(0);
+    public ImageIcon getImageCover(){
+        return this.starterCover;
+    }
+    public ImageIcon getCloseCover(){
+        return this.closeCover;
     }
 
 

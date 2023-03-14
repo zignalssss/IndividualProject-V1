@@ -1,8 +1,10 @@
+import javax.swing.*;
+import java.awt.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
-public class CheckOpenClose {
+public class CheckOpenClose extends ProjectFont{
     private Random random = new Random();
     private ReadFiles formExcel = new ReadFiles(1 ,13 ,0,3) ;
     private ArrayList<ArrayList> arrRestaraunt = new ArrayList<ArrayList>();
@@ -23,8 +25,8 @@ public class CheckOpenClose {
                     sortClose.add(arrRestaraunt.get(i));
                 }
         }
-        setSortOpenArr(sortOpen);
-        setSortCloseArr(sortClose);
+        setSortOpenRestarauntArr(sortOpen);
+        setSortCloseRestarauntArr(sortClose);
     }
 
     public int RandomIndex(){
@@ -32,16 +34,42 @@ public class CheckOpenClose {
         setRandomIndex(index);
         return index;
     }
-    public void setSortOpenArr(ArrayList sortArray){
+    public JPanel getRestarautOpenName(){
+        JPanel panel = new JPanel();
+        for(int i = 0;i < sortOpenArrRestaraunt.size();i++){
+            JLabel text = new JLabel((i+1) + ". " + sortOpenArrRestaraunt.get(i).get(1));
+            text.setFont(getFont().deriveFont(14f).deriveFont(Font.BOLD));
+            panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+            panel.add(text);
+        }
+        return panel;
+    }
+    public JPanel getRestarautCloseName(){
+        JPanel panel = new JPanel();
+        for(int i = 0;i < sortCloseArrRestaraunt.size();i++){
+            JLabel text = new JLabel((i+1) + ". " + sortCloseArrRestaraunt.get(i).get(1));
+            text.setFont(getFont().deriveFont(14f).deriveFont(Font.BOLD));
+            panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+            panel.add(text);
+        }
+        return panel;
+    }
+    public void setSortOpenRestarauntArr(ArrayList sortArray){
         this.sortOpenArrRestaraunt = sortArray;
     }
-    public void setSortCloseArr(ArrayList sortArray){
+    public void setSortCloseRestarauntArr(ArrayList sortArray){
         this.sortCloseArrRestaraunt = sortArray;
     }
     public ArrayList getRestarauntIndex(int index){
         return sortOpenArrRestaraunt.get(index);
     }
-    public ArrayList getSortArr(){
+    public int getNumberRestaraunt(int index){
+        return (int)sortOpenArrRestaraunt.get(index).get(0);
+    }
+    public ArrayList getSortOpenRestarauntArr(){
+        return this.sortOpenArrRestaraunt;
+    }
+    public ArrayList getSortCloseRestarauntArr(){
         return this.sortOpenArrRestaraunt;
     }
     public void setRandomIndex(int index){
