@@ -5,12 +5,10 @@ import java.time.format.DateTimeFormatter;
 
 
 public class RandResProject extends ProjectFont{
-    private CheckOpenClose check = new CheckOpenClose();
     private JFrame frame = new JFrame("RandResProject");
     private Color color = new Color(255,235,205);
     private ReadFiles formExcel = new ReadFiles() ;
     RandResProject(){
-        check.sortTimeRestaraunt();
         setMainPage();
         createJFrame();
     }
